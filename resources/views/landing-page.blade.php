@@ -5,13 +5,13 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Makkah Wedding Service</title>
+  <title>Makah Wedding Service</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
   <link href="images/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -24,7 +24,7 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/landing.css" rel="stylesheet">
+  <link href="../assets/css/landing.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Lumia - v4.2.0
@@ -50,8 +50,8 @@
         <ul>
           <li><a class="nav-link scrollto" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">Profile</a></li>
-          <li><a class="nav-link scrollto" href="#services">Paket</a></li>
-          <li><a class="nav-link scrollto " href="#portfolio">Progres</a></li>
+          <li><a class="nav-link scrollto" href="#progres">Progres</a></li>
+          <li><a class="nav-link scrollto " href="#portfolio">Paket</a></li>
           <li><a class="nav-link scrollto" href="#testimonials">Testimoni</a></li>
           <li><a href="/register">Registrasi</a></li>
           <li><a href="/login">Login</a></li>
@@ -62,7 +62,7 @@
 
       <div class="header-social-links d-flex align-items-center">
         <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.facebook.com/makah.inuykhalimah" class="facebook"><i class="bi bi-facebook"></i></a>
         <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
         <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
       </div>
@@ -73,7 +73,7 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
     <div class="container text-center text-md-left" data-aos="fade-up">
-      <h1>Welcome to <span>Makkah Wedding service</span></h1>
+      <h1>Welcome to <span>Makah Wedding service</span></h1>
       <!-- <h2>Wediing Package All in One</h2> -->
       <h2>Make Up || Dekorasi || Wedding Organizer || etc</h2>
       <a href="#about" class="btn-get-started scrollto">Mulai</a>
@@ -88,31 +88,31 @@
 
         <div class="section-title">
           <h2>Kami Menyediakan</h2>
-          <p>Wedding Package All in One</p>
+          <p>Wedding Package All in One Since 2012</p>
         </div>
 
         <div class="row">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="icon-box">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>
+            <img src="assets/img/mua.jpg" class="img-fluid" alt="" width=50%>
               <h4><a href="">Make Up</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+              <p>Kami menyediakan Make Up tanpa kerik alis yang mana itu adalah ciri khas yang dimiliki oleh Make up Makah Wedding Service</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-file"></i></div>
+            <img src="assets/img/dekor.jpeg" class="img-fluid" alt="" width=72% >
               <h4><a href="">Dekorasi</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+              <p>Kami menyediakan dekorasi seperti Pelaminan, tenda, kursi, prasmanan, panggung, sound system, lampu, diesel, blower, karpet, dan masi banyak lagi</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
+            <img src="assets/img/wo.jpeg" class="img-fluid" alt="" width=72%>
               <h4><a href="">Wedding Organizer</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+              <p>kami melayani sejak perencanaan praacara sampai pada evaluasi pascaacara dengan jasa yang disediakan meliputi Rias Pengantin, dan Dekorasi</p>
             </div>
           </div>
 
@@ -132,27 +132,25 @@
           <div class="col-lg-6 pt-4 pt-lg-0">
             <h3>Tentang Kami</h3>
             <p>
-            Makah Wedding Service (MWS) merupakan suatu usaha yang bergerak dalam bidang Wedding Organizer atau jasa pengelolaan acara pernikahan. Usaha ini dikelola oleh Makhrus S.Si dan Nur khalimah S.Pd(Inuy), pasangan suami-istri yang sudah ahli dalam bidang pengelolaan jasa pernikahan.
+            Makah Wedding Service (MWS) merupakan suatu usaha yang bergerak dalam bidang Wedding Organizer atau jasa pengelolaan acara pernikahan. Usaha ini dikelola oleh Makhrus S.Si dan Nur khalimah S.Pd (Inuy), pasangan suami-istri yang sudah ahli dalam bidang pengelolaan jasa pernikahan.
             </p><p>
-            Didirikan sejak 20 oktober 2012 jasa Makah Wedding Service yang cakupan kerjanya meliputi daerah Indramayu, Subang, Majalengka, Sumedang, Cirebon, dan Kuningan, sudah banyak diminati oleh para calon pengantin karena kualitasnya yang unggul dengan harga yang bisa dinegosiasi.
+            Didirikan sejak 20 oktober 2012 jasa Makah Wedding Service yang cakupan kerjanya meliputi daerah Indramayu, Subang, Majalengka, Cirebon, dan Kuningan, sudah banyak diminati oleh para calon pengantin karena kualitasnya yang unggul dengan harga yang bisa dinegosiasi.
             </p>
-            <ul>
-              <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li><i class="bx bx-check-double"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-            </ul>
-            <div class="row icon-boxes">
-              <div class="col-md-6">
-                <i class="bx bx-receipt"></i>
-                <h4>Corporis voluptates sit</h4>
-                <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
-              </div>
-              <div class="col-md-6 mt-4 mt-md-0">
-                <i class="bx bx-cube-alt"></i>
-                <h4>Ullamco laboris nisi</h4>
-                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
-              </div>
-            </div>
+            <p>
+            penghargaan-penghargaan yang diraih oleh Makhrus dan Inuy dalam berorganisasi maupun lomba yang diikuti sebelumnya. Makhrus sendiri merupakan pemenang juara I Nang Dermayu 2011, Demisioner Ketua Umum IKMI (Ikatan Keluarga Mahasiswa Indramayu) Cirebon, dan prestasi-prestasi lainnya. Sedangkan Inuy merupakan pemenang Nok Dermayu Berbakat 2011, Demisioner Sekretaris Umum Ika Darma Ayu Bandung (Ikatan Keluarga Mahasiswa Indramayu), juara berbakat sophie got talent Indramayu, dan prestasi-prestasi lainnya.
+            </p>
           </div>
+
+          <ul>
+              <li><i class="bx bx-crown"></i>Inuy juga mengikuti les untuk Upgrade Make UP diantaranya:</li>
+          </ul>
+          <ul>
+              <li><i class="bx bx-check-double"></i>Adam Dewa (Kuningan)</li>
+              <li><i class="bx bx-check-double"></i>Ade Rustana (Bandung)</li>
+              <li><i class="bx bx-check-double"></i>Nanath Nadia (Bandung)</li>
+              <li><i class="bx bx-check-double"></i>Khadijah Azzahra (Malang)</li>
+          </ul>
+          
         </div>
 
       </div>
@@ -163,54 +161,47 @@
       <div class="container">
 
         <div class="row skills-content">
-
           <div class="col-lg-6">
 
             <div class="progress">
-              <span class="skill">HTML <i class="val">100%</i></span>
+              <span class="skill">Make UP <i class="val">100%</i></span>
               <div class="progress-bar-wrap">
                 <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
 
             <div class="progress">
-              <span class="skill">CSS <i class="val">90%</i></span>
+              <span class="skill">Wedding Organizer <i class="val">90%</i></span>
               <div class="progress-bar-wrap">
                 <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
 
-            <div class="progress">
-              <span class="skill">JavaScript <i class="val">75%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
 
           </div>
 
           <div class="col-lg-6">
 
             <div class="progress">
-              <span class="skill">PHP <i class="val">80%</i></span>
+              <span class="skill">Dekorasi <i class="val">80%</i></span>
               <div class="progress-bar-wrap">
                 <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
 
             <div class="progress">
-              <span class="skill">WordPress/CMS <i class="val">90%</i></span>
+              <span class="skill">Konsumsi <i class="val">90%</i></span>
               <div class="progress-bar-wrap">
                 <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
 
-            <div class="progress">
+            <!-- <div class="progress">
               <span class="skill">Photoshop <i class="val">55%</i></span>
               <div class="progress-bar-wrap">
                 <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
-            </div>
+            </div> -->
 
           </div>
 
@@ -220,55 +211,15 @@
     </section><!-- End Skills Section -->
 
     <!-- ======= Counts Section ======= -->
-    <section id="counts" class="counts">
-      <div class="container">
-
-        <div class="row">
-
-          <div class="col-lg-3 col-6">
-            <div class="count-box">
-              <i class="bi bi-emoji-smile"></i>
-              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Happy Clients</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-6">
-            <div class="count-box">
-              <i class="bi bi-journal-richtext"></i>
-              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Projects</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-6 mt-5 mt-lg-0">
-            <div class="count-box">
-              <i class="bi bi-headset"></i>
-              <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Hours Of Support</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-6 mt-5 mt-lg-0">
-            <div class="count-box">
-              <i class="bi bi-people"></i>
-              <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Hard Workers</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Counts Section -->
+    <!-- End Counts Section -->
 
     <!-- ======= Services Section ======= -->
-    <section id="services" class="services section-bg">
+    <section id="progres" class="services section-bg">
       <div class="container">
 
         <div class="section-title">
-          <h2>Services</h2>
-          <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem</p>
+          <h2>Progres</h2>
+          <!-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem</p> -->
         </div>
 
         <div class="row">
@@ -293,27 +244,27 @@
               <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
             </div>
           </div>
-          <div class="col-md-6 mt-4">
+          <!-- <div class="col-md-6 mt-4">
             <div class="icon-box">
               <i class="bi bi-binoculars"></i>
               <h4><a href="#">Nemo Enim</a></h4>
               <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
             </div>
-          </div>
+          </div> -->
           <div class="col-md-6 mt-4">
             <div class="icon-box">
               <i class="bi bi-brightness-high"></i>
-              <h4><a href="#">Magni Dolore</a></h4>
+              <h4><a href="#">Konsumsi</a></h4>
               <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
             </div>
           </div>
-          <div class="col-md-6 mt-4">
+          <!-- <div class="col-md-6 mt-4">
             <div class="icon-box">
               <i class="bi bi-calendar4-week"></i>
               <h4><a href="#">Eiusmod Tempor</a></h4>
               <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
             </div>
-          </div>
+          </div> -->
         </div>
 
       </div>
@@ -324,8 +275,8 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Portfolio</h2>
-          <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit</p>
+          <h2>PAKET</h2>
+          <p>Paket yang kami sediakan</p>
         </div>
 
         <div class="row">
@@ -351,8 +302,8 @@
               </figure>
 
               <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">App 1</a></h4>
-                <p>App</p>
+                <h4><a href="portfolio-details.html">Paket WO</a></h4>
+                <p>Mini Dekor Package</p>
               </div>
             </div>
           </div>
@@ -366,8 +317,8 @@
               </figure>
 
               <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">Web 3</a></h4>
-                <p>Web</p>
+                <h4><a href="portfolio-details.html">Paket WO</a></h4>
+                <p>Bonze -2 Package</p>
               </div>
             </div>
           </div>
@@ -381,8 +332,8 @@
               </figure>
 
               <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">App 2</a></h4>
-                <p>App</p>
+                <h4><a href="portfolio-details.html">Paket WO</a></h4>
+                <p>Bonze -1 Package</p>
               </div>
             </div>
           </div>
@@ -572,14 +523,14 @@
 
         <div class="section-title">
           <h2>Team</h2>
-          <p>Sit sint consectetur velit quos quisquam cupiditate nemo qui</p>
+          <p>Anggota Team Makah Wedding Service</p>
         </div>
 
         <div class="row">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="member">
               <img src="assets/img/team/team-1.jpg" alt="">
-              <h4>Walter White</h4>
+              <h4>Nur khalimah</h4>
               <span>Chief Executive Officer</span>
               <p>
                 Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
@@ -686,7 +637,7 @@
         <div class="row">
 
           <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>Makkah Wediing Service</h3>
+            <h3>Makah Wediing Service</h3>
             <p>
               A108 Adam Street <br>
               New York, NY 535022<br>
@@ -710,22 +661,15 @@
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Services</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Make Up</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Wedding Organizer</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Dekorasi</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Konsumsi</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Les Make Up</a></li>
             </ul>
           </div>
 
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Join Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-          </div>
-
+          
         </div>
       </div>
     </div>
@@ -735,8 +679,8 @@
       
       <div class="social-links text-center text-md-right pt-3 pt-md-0">
         <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="https://www.facebook.com/makah.inuykhalimah" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="https://www.instagram.com/makahwedding/" class="instagram"><i class="bx bxl-instagram"></i></a>
         <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
         <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
       </div>

@@ -40,23 +40,30 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama</th>
                                     <th>Email</th>
                                     <th>Caption</th>
                                     <th>Foto</th>
-                                    <th>Aksi</th>
+                                    <th width = "15%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                            @foreach($testimoni as $t)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Garrett Winters</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
-                                    <td>Tokyo</td>
-                                    <td>Edit dan Hapus</td>
-                                </tr>                                       
+                                    <td>{{++$i}}</td>
+                                    <td>{{$t->konsumen->email}}</td>
+                                    <td>{{$t->caption}}</td>
+                                    <td><img  align:center; src="{{URL::to('/')}}/foto/{{$t->foto}}" class="fa-image" width="100px" href="URL::to('/')}}/foto/{{$t->foto}}" ></td>
+                                    <td>      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit{{$t->id_testimoni}}" >Edit</button>
+                                    <div style="float:right;">
+                                    <form action="{{route('testimoni.destroy', $t->id_testimoni)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Hapus</i></a>
+                                    </form>
+                                    </div>
+                                    </td>
+                                </tr>    
+                                @endforeach                                   
                             </tbody>
                         </table>
                     </div>
@@ -65,4 +72,46 @@
         </div>
     </div><!-- .animated -->
 </div><!-- .content -->
+
+
+
+@foreach ($testimoni as $t)
+<!-- Modal Ubah Data  -->
+<div id="edit{{$t->id_testimoni}}" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- konten modal-->
+        <div class="modal-content">
+            <!-- heading modal -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="mediumModalLabel">Edit Testimoni</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- body modal -->
+            <div class="modal-body">
+            <form action="{{route('testimoni.update', $t->id_testimoni)}}" class="form-horizontal tasi-form" method="post" enctype="multipart/form-data">
+                @csrf
+                @method('PATCH')
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Caption</label>
+                    <div class="col-sm-8">        
+                        <input type="text" name="caption" class="form-control" value ="{{$t->caption}}" >
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">foto</label>
+                    <div class="col-sm-8">        
+                        <input type="file" name="foto" class="form-control" >
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Edit Testimoni</button>
+                </div>   
+            </form>
+            </div>        
+        </div>
+    </div>
+</div>
+@endforeach
 @endsection

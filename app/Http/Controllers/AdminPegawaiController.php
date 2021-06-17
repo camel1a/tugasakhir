@@ -25,7 +25,20 @@ class AdminPegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+
+        $data = array(
+            'username'=>($request->username),
+            'password'=>($request->password),
+            'nama'=>$request->nama,
+            'email'=>$request->email,
+            'no_hp'=>$request->no_hp,
+            'jobdesk'=>$request->jobdesk,
+            'alamat'=>$request->alamat,
+            'jk'=>$request->jk
+        );
+        Pegawai::create($data);
+        return redirect('admin\pegawai')->with('success','Data Pegawai berhasil ditambah');
     }
 
     /**
@@ -34,9 +47,29 @@ class AdminPegawaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // untuk edit
     public function update(Request $request, $id)
     {
-        //
+            if($request->has('id_jk'))
+            {
+                $data = array(
+                    'id_jk'=>$request->id_jk,
+                );
+            Pegawai::whereid_pegawai($id)->update($data);
+            }
+            $data = array(
+                'username'=>($request->username),
+                'password'=>($request->password),
+                'nama'=>$request->nama,
+                'email'=>$request->email,
+                'no_hp'=>$request->no_hp,
+                'jobdesk'=>$request->jobdesk,
+                'alamat'=>$request->alamat,
+                'jk'=>$request->jk
+            );
+        Pegawai::whereid_pegawai($id)->update($data);
+        return redirect('admin\pegawai');
+
     }
 
     /**
@@ -47,6 +80,12 @@ class AdminPegawaiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $datas = Pegawai::findOrfail($id);
+            $datas->delete();
+            return redirect('admin\pegawai')->with('success','pegawai Berhasil Dihapus');
+        }catch(\Throwable $th){
+            return redirect('admin\pegawai')->withErrors('Data gagal dihapus. Harap hapus data yang terkait');
+        }
     }
 }

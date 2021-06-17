@@ -17,6 +17,8 @@ class CreateJadwalsTable extends Migration
             $table->Increments('id_jadwal');
             $table->integer('id_konsumen')->unsigned();
             $table->foreign('id_konsumen')->references('id_konsumen')->on('konsumens');
+            $table->integer('id_pegawai')->unsigned();
+            $table->foreign('id_pegawai')->references('id_pegawai')->on('pegawais');
             $table->date('tgl');
             $table->string('kepentingan');
             $table->string('status');

@@ -25,7 +25,13 @@ class AdminPemasukanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = array(
+            'jenis'=>$request->jenis,
+            'nominal'=>$request->nominal,
+            'tgl'=>$request->tgl
+        );
+        Pemasukan::create($data);
+        return redirect('admin\Pemasukan')->with('success','Data konsumen berhasil ditambah');
     }
 
     /**
@@ -34,9 +40,18 @@ class AdminPemasukanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // untuk edit
     public function update(Request $request, $id)
     {
-        //
+
+            $data = array(
+                'jenis'=>$request->jenis,
+                'nominal'=>$request->nominal,
+                'tgl'=>$request->tgl
+            );
+        Pemasukan::whereid_pemasukan($id)->update($data);
+        return redirect('admin\pemasukan');
+
     }
 
     /**
@@ -47,6 +62,12 @@ class AdminPemasukanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $datas = Pemasukan::findOrfail($id);
+            $datas->delete();
+            return redirect('admin\pemasukan')->with('success','pemasukan Berhasil Dihapus');
+        }catch(\Throwable $th){
+            return redirect('admin\pemasukan')->withErrors('Data gagal dihapus. Harap hapus data yang terkait');
+        }
     }
 }

@@ -9,7 +9,7 @@ class Pesanan extends Model
 {
     protected $table='pesanans';
     protected $primaryKey = 'id_pesanan';
-    protected $fillable = ['id_pesanan','id_konsumen','id_paket','email','tgl']; //field tabel
+    protected $fillable = ['id_pesanan','id_konsumen','id_paket','id_pegawai','tgl']; //field tabel
     public $timestamps = false;
 
     public function paket()
@@ -20,5 +20,10 @@ class Pesanan extends Model
     public function konsumen()
     {
 	return $this->belongsTo('App\Models\Konsumen','id_konsumen');
+    }
+
+    public function pegawai()
+    {
+	return $this->belongsTo('App\Models\Pegawai','id_pegawai');
     }
 }

@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-    <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="../assets/css/cs-skin-elastic.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
     <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
@@ -55,14 +55,12 @@
         #flotLine5  {
              height: 105px;
         }
-
         #flotBarChart {
             height: 150px;
         }
         #cellPaiChart{
             height: 160px;
         }
-
     </style>
 </head>
 
@@ -88,6 +86,10 @@
 
                     <li>
                         <a href="{{URL('admin/pesanan')}}"> <i class="menu-icon ti-pencil-alt"></i>Data Pesanan </a>
+                    </li>
+
+                    <li>
+                        <a href="{{URL('admin/paket')}}"> <i class="menu-icon ti-package"></i>Data Paket </a>
                     </li>
 
                     <li>
@@ -124,58 +126,7 @@
             <div class="top-right">
                 <div class="header-menu">
                     <div class="header-left">
-                        <!-- <button class="search-trigger"><i class="fa fa-search"></i></button>
-                        <div class="form-inline">
-                            <form class="search-form">
-                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
-                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
-                            </form>
-                        </div> -->
-
-                       
-
-                        <div class="dropdown for-message">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-envelope"></i>
-                                <span class="count bg-primary">4</span>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="message">
-                                <p class="red">You have 4 Mails</p>
-                                <a class="dropdown-item media" href="#">
-                                    <span class="photo media-left"><img alt="avatar" src="images/avatar/1.jpg"></span>
-                                    <div class="message media-body">
-                                        <span class="name float-left">Jonathan Smith</span>
-                                        <span class="time float-right">Just now</span>
-                                        <p>Hello, this is an example msg</p>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item media" href="#">
-                                    <span class="photo media-left"><img alt="avatar" src="../images/avatar/2.jpg"></span>
-                                    <div class="message media-body">
-                                        <span class="name float-left">Jack Sanders</span>
-                                        <span class="time float-right">5 minutes ago</span>
-                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item media" href="#">
-                                    <span class="photo media-left"><img alt="avatar" src="../images/avatar/3.jpg"></span>
-                                    <div class="message media-body">
-                                        <span class="name float-left">Cheryl Wheeler</span>
-                                        <span class="time float-right">10 minutes ago</span>
-                                        <p>Hello, this is an example msg</p>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item media" href="#">
-                                    <span class="photo media-left"><img alt="avatar" src="../images/avatar/4.jpg"></span>
-                                    <div class="message media-body">
-                                        <span class="name float-left">Rachel Santos</span>
-                                        <span class="time float-right">15 minutes ago</span>
-                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                      
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -183,13 +134,9 @@
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+                            <a class="nav-link" href="{{URL('/keluar')}}"><i class="fa fa-power-off"></i>Logout</a>
+                            
 
-                            <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a> -->
-
-                            <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
-
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 
@@ -252,7 +199,7 @@
                                 <div class="stat-widget-five">
                                     <div class="stat-icon dib flat-color-3">
                                     <div class="icon">
-                                            <i class="ti-agenda"></i>
+                                            <i class="ti-check-box"></i>
                                             </div>
                                     </div>
                                     <div class="stat-content">
@@ -269,7 +216,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="stat-widget-five">
-                                    <div class="stat-icon dib flat-color-3">
+                                    <div class="stat-icon dib flat-color-4">
                                     <div class="icon">
                                             <i class="ti-agenda"></i>
                                             </div>
@@ -289,14 +236,14 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="stat-widget-five">
-                                    <div class="stat-icon dib flat-color-4">
+                                    <div class="stat-icon dib flat-color-5">
                                     <div class="icon">
                                             <i class="fa fa-money"></i>
                                             </div>
                                     </div>
                                     <div class="stat-content">
                                         <div class="text-left dib">
-                                            <div class="stat-text"><span class="count">{{$total}}</span></div>
+                                            <div class="stat-text"><?PHP echo "Rp. " . number_format($total, 0, ".", "."); ?></div>
                                             <div class="stat-heading">Jumlah Keuangan</div>
                                         </div>
                                     </div>
@@ -312,6 +259,7 @@
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                 <h4 class="modal-title"><strong>Add New Event</strong></h4>
+                                
                             </div>
                             <div class="modal-body"></div>
                             <div class="modal-footer">
@@ -387,7 +335,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="../assets/js/main.js"></script>
 
     <!--  Chart js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
@@ -401,24 +349,22 @@
     <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
-    <script src="assets/js/init/weather-init.js"></script>
+    <script src="../assets/js/init/weather-init.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
-    <script src="assets/js/init/fullcalendar-init.js"></script>
+    <script src="../assets/js/init/fullcalendar-init.js"></script>
 
     <!--Local Stuff-->
     <script>
         jQuery(document).ready(function($) {
             "use strict";
-
             // Pie chart flotPie1
             var piedata = [
                 { label: "Desktop visits", data: [[1,32]], color: '#5c6bc0'},
                 { label: "Tab visits", data: [[1,33]], color: '#ef5350'},
                 { label: "Mobile visits", data: [[1,35]], color: '#66bb6a'}
             ];
-
             $.plot('#flotPie1', piedata, {
                 series: {
                     pie: {
@@ -461,12 +407,10 @@
                     hoverable: true,
                     clickable: true
                 }
-
             });
             // cellPaiChart End
             // Line Chart  #flotLine5
             var newCust = [[0, 3], [1, 5], [2,4], [3, 7], [4, 9], [5, 3], [6, 6], [7, 4], [8, 10]];
-
             var plot = $.plot($('#flotLine5'),[{
                 data: newCust,
                 label: 'New Data Flow',
@@ -518,7 +462,6 @@
                     showGrid: true
                 }
             });
-
                 chart.on('draw', function(data) {
                     if(data.type === 'line' || data.type === 'area') {
                         data.element.animate({
@@ -578,7 +521,6 @@
                             mode: 'nearest',
                             intersect: true
                         }
-
                     }
                 } );
             }

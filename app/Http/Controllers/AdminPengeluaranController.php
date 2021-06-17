@@ -25,7 +25,15 @@ class AdminPengeluaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+
+        $data = array(
+            'jenis'=>$request->jenis,
+            'nominal'=>$request->nominal,
+            'tgl'=>$request->tgl
+        );
+        Pengeluaran::create($data);
+        return redirect('admin\pengeluaran')->with('success','Data Pengeluaran berhasil ditambah');
     }
 
     /**
@@ -34,9 +42,18 @@ class AdminPengeluaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // untuk edit
     public function update(Request $request, $id)
     {
-        //
+
+            $data = array(
+                'jenis'=>$request->jenis,
+                'nominal'=>$request->nominal,
+                'tgl'=>$request->tgl
+            );
+        Pengeluaran::whereid_pengeluaran($id)->update($data);
+        return redirect('admin\pengeluaran');
+
     }
 
     /**
@@ -47,6 +64,12 @@ class AdminPengeluaranController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $datas = Pengeluaran::findOrfail($id);
+            $datas->delete();
+            return redirect('admin\pengeluaran')->with('success','pengeluaran Berhasil Dihapus');
+        }catch(\Throwable $th){
+            return redirect('admin\pengeluaran')->withErrors('Data gagal dihapus. Harap hapus data yang terkait');
+        }
     }
 }

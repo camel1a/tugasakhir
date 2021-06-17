@@ -19,6 +19,8 @@ class CreatePesanansTable extends Migration
             $table->foreign('id_konsumen')->references('id_konsumen')->on('konsumens');
             $table->integer('id_paket')->unsigned();
             $table->foreign('id_paket')->references('id_paket')->on('pakets');
+            $table->integer('id_pegawai')->unsigned();
+            $table->foreign('id_pegawai')->references('id_pegawai')->on('pegawais');
             $table->date('tgl');
             $table->timestamps();
         });

@@ -25,7 +25,17 @@ class AdminKonsumenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+
+        $data = array(
+            'email'=>$request->email,
+            'nama'=>$request->nama,
+            'password'=>$request->password,
+            'no_hp'=>$request->no_hp,
+            'alamat'=>$request->alamat
+        );
+        Konsumen::create($data);
+        return redirect('admin\konsumen')->with('success','Data konsumen berhasil ditambah');
     }
 
     /**
@@ -34,10 +44,22 @@ class AdminKonsumenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+   // untuk edit
+   public function update(Request $request, $id)
+   {
+           
+           $data = array(
+            'email'=>$request->email,
+            'nama'=>$request->nama,
+            'password'=>$request->password,
+            'no_hp'=>$request->no_hp,
+            'alamat'=>$request->alamat
+           );
+       Konsumen::whereid_konsumen($id)->update($data);
+       return redirect('admin\konsumen');
+
+   }
+
 
     /**
      * Remove the specified resource from storage.
@@ -47,6 +69,12 @@ class AdminKonsumenController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $datas = Konsumen::findOrfail($id);
+            $datas->delete();
+            return redirect('admin\konsumen')->with('success','konsumen Berhasil Dihapus');
+        }catch(\Throwable $th){
+            return redirect('admin\konsumen')->withErrors('Data gagal dihapus. Harap hapus data yang terkait');
+        }
     }
 }

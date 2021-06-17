@@ -9,6 +9,6 @@ class Konsumen extends Model
 {
     protected $table='konsumens';
     protected $primaryKey = 'id_konsumen';
-    protected $fillable = ['id_konsumen'.'email','nama','password','no_hp', 'alamat']; //field tabel
+    protected $fillable = ['id_konsumen','email','nama','password','no_hp', 'alamat']; //field tabel
     public $timestamps = false;
 }

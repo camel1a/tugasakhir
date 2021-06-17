@@ -46,6 +46,39 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
+
+        'apiadmin' => [
+            'driver' => 'token',
+            'provider' => 'admin',
+            'hash' => false,
+        ],
+
+        'pegawai' => [
+            'driver' => 'session',
+            'provider' => 'pegawai',
+        ],
+
+        'apiadmin' => [
+            'driver' => 'token',
+            'provider' => 'pegawai',
+            'hash' => false,
+        ],
+
+        'konsumen' => [
+            'driver' => 'session',
+            'provider' => 'konsumen',
+        ],
+
+        'apikonsumen' => [
+            'driver' => 'token',
+            'provider' => 'konsumen',
+            'hash' => false,
+        ],
     ],
 
     /*
@@ -69,6 +102,21 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'admin' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\login_admin::class,
+        ],
+
+        'pegawai' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\login_pegawai::class,
+        ],
+
+        'konsumen' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\login_konsumen::class,
         ],
 
         // 'users' => [

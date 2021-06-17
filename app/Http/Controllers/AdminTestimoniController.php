@@ -25,7 +25,7 @@ class AdminTestimoniController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -34,9 +34,25 @@ class AdminTestimoniController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // untuk edit
     public function update(Request $request, $id)
     {
-        //
+        $foto = $request->file('foto');
+        if($request->hasFile('foto'))
+        {
+            $new_name = rand().'.'.$foto->getClientOriginalExtension();
+            $foto->move(public_path('foto'), $new_name);
+            $data = array(            
+                'foto'=>$new_name
+            );
+        Testimoni::whereid_testimoni($id)->update($data);
+        }
+            $data = array(
+                'caption'=>$request->caption
+            );
+        Testimoni::whereid_testimoni($id)->update($data);
+        return redirect('admin\testimoni');
+
     }
 
     /**
@@ -47,6 +63,12 @@ class AdminTestimoniController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $datas = Testimoni::findOrfail($id);
+            $datas->delete();
+            return redirect('admin\testimoni')->with('success','testimoni Berhasil Dihapus');
+        }catch(\Throwable $th){
+            return redirect('admin\testimoni')->withErrors('Data gagal dihapus. Harap hapus data yang terkait');
+        }
     }
 }

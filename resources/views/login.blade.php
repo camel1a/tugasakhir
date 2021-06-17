@@ -26,7 +26,7 @@
 
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 </head>
-<body class="bg-dark">
+<body class="bg-light">
 
     <div class="sufee-login d-flex align-content-center flex-wrap">
         <div class="container">
@@ -36,18 +36,23 @@
                         <img class="align-content" src="images/logo.png" alt="">
                     </a>
                 </div>
-                <div class="login-form">
-                    <form>
+                <div class="login-form Regular shadow">
+                    <form action="/kirimdata" method="post">
+                    {{csrf_field()}}
                         <div class="form-group">
-                            <label>Email address</label>
-                            <input type="email" class="form-control" placeholder="Email">
+                            <label>Username</label>
+                            <input name="username" type="text" class="form-control" placeholder="username">
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" class="form-control" placeholder="Password">
+                            <input name="password" type="password" class="form-control" placeholder="Password">
                         </div>
                         
                         <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Login</button>
+
+                        <div class="register-link m-t-15 text-center">
+                            <p>Belum Mempunyai Akun ? <a href="{{URL('register')}}"> Register</a></p>
+                        </div>
                         
                     </form>
                 </div>

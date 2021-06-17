@@ -26,7 +26,7 @@
 
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 </head>
-<body class="bg-dark">
+<body class="bg-light">
 
     <div class="sufee-login d-flex align-content-center flex-wrap">
         <div class="container">
@@ -36,34 +36,37 @@
                         <img class="align-content" src="images/logo.png" alt="">
                     </a>
                 </div>
-                <div class="login-form">
-                    <form>
-                        <div class="form-group">
-                            <label>User Name</label>
-                            <input type="email" class="form-control" placeholder="User Name">
+                
+                <div class="login-form Regular shadow">
+                    
+                    <form action="{{route('register.store')}}" class="form-horizontal tasi-form " method="post" enctype="multipart/form-data">
+                    @csrf
+        
+                        <div class="form-group ">
+                            <label>Nama</label>
+                            <input type="text" name="nama" class="form-control" placeholder="Nama">
                         </div>
                         <div class="form-group">
                             <label>Email address</label>
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input type="email" name="email" class="form-control" placeholder="Email">
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" class="form-control" placeholder="Password">
+                            <input type="password" name="password" class="form-control" placeholder="Password">
                         </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Agree the terms and policy
-                            </label>
+                        <div class="form-group">
+                            <label>No HP</label>
+                            <input type="text" name="no_hp" class="form-control" placeholder="No HP">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Register</button>
-                        <div class="social-login-content">
-                            <div class="social-button">
-                                <button type="button" class="btn social facebook btn-flat btn-addon mb-3"><i class="ti-facebook"></i>Register with facebook</button>
-                                <button type="button" class="btn social twitter btn-flat btn-addon mt-2"><i class="ti-twitter"></i>Register with twitter</button>
-                            </div>
+                        <div class="form-group">
+                            <label>Alamat</label>
+                            <input type="text" name="alamat" class="form-control" placeholder="Alamat">
                         </div>
+                        
+                        <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Register</button>
+                       
                         <div class="register-link m-t-15 text-center">
-                            <p>Already have account ? <a href="#"> Sign in</a></p>
+                            <p>Sudah Mempunyai Akun ? <a href="{{URL('login')}}"> Login</a></p>
                         </div>
                     </form>
                 </div>

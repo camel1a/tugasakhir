@@ -14,8 +14,9 @@ class CreateTestimonisTable extends Migration
     public function up()
     {
         Schema::create('testimonis', function (Blueprint $table) {
-            $table->string('email')->primary();
-            $table->string('nama');
+            $table->Increments('id_testimoni');
+            $table->integer('id_konsumen')->unsigned();
+            $table->foreign('id_konsumen')->references('id_konsumen')->on('konsumens');
             $table->string('caption');
             $table->string('foto');
             $table->timestamps();
