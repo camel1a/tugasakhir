@@ -44,7 +44,7 @@
                                     <th>Email</th>
                                     <th>Caption</th>
                                     <th>Foto</th>
-                                    <th width = "15%">Aksi</th>
+                                    <th width = "13%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -162,7 +162,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary">Edit Testimoni</button>
+                  <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>   
             </form>
             </div>        

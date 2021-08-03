@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pesanan;
 use App\Models\Paket;
 use App\Models\konsumen;
+use App\Models\Transportasi;
 use DB;
 
 class PegawaiPesananController extends Controller
@@ -20,8 +21,9 @@ class PegawaiPesananController extends Controller
         $paket = Paket::all();
         $konsumen = Konsumen::all();
         $pesanan = Pesanan::all();
+        $transportasi = Transportasi::all();
         
-        return view('Pegawai.data-pesanan',compact('pesanan','paket','konsumen'))->with('i');
+        return view('Pegawai.data-pesanan',compact('pesanan','paket','konsumen','transportasi'))->with('i');
     }
 
     /**
@@ -32,8 +34,11 @@ class PegawaiPesananController extends Controller
     public function store(Request $request)
     {
         $data = array(
+            'id_pegawai'=>auth()->user()->id_pegawai,
             'id_konsumen'=>$request->id_konsumen,
             'id_paket'=>$request->id_paket,
+            'id_transportasi'=>$request->id_transportasi,
+            'alamat'=>$request->alamat,
             'tgl'=>$request->tgl
         );
         Pesanan::create($data);
@@ -64,10 +69,15 @@ class PegawaiPesananController extends Controller
                 );
             Pesanan::whereid_pesanan($id)->update($data);
             }
-            $data = array(
-                'tgl'=>$request->tgl
-            );
+
+            if($request->has('tgl'))
+            {
+                $data = array(
+                    'tgl'=>$request->tgl,
+                );
             Pesanan::whereid_pesanan($id)->update($data);
+            }
+            
             return redirect('pegawai\pesanan-pegawai');
 
     }

@@ -9,6 +9,6 @@ class Pegawai extends Model
 {
     protected $table='pegawais';
     protected $primaryKey = 'id_pegawai';
-    protected $fillable = ['id_pegawai','username','nama','password','email','no_hp', 'jk', 'jobdesk', 'alamat']; //field tabel
+    protected $fillable = ['id_pegawai','username','nama','password','email','no_hp', 'jk', 'jobdesk','kontrak','foto', 'alamat']; //field tabel
     public $timestamps = false;
 }

@@ -42,9 +42,10 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
-                                    <th>No HP</th>
                                     <th>Job Deskripsion</th>
-                                    <th width = "22%">Aksi</th>
+                                    <th>Kontrak Kerja</th>
+                                    <th>No Hp</th>
+                                    <th width = "20%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -53,8 +54,9 @@
                                 <tr>
                                     <td>{{++$i}}</td>
                                     <td>{{$p->nama}}</td>
-                                    <td>{{$p->no_hp}}</td>
                                     <td>{{$p->jobdesk}}</td>
+                                    <td>{{$p->kontrak}}</td>
+                                    <td><a href="https://wa.me/+62{{$p->no_hp}}" style="text-decoration: none; color: #292b35;">{{$p->no_hp}}</td>
                                     <td>
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit{{$p->id_pegawai}}" >Edit</button>
                                     <button type="danger" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#detail{{$p->id_pegawai}}" >Detail</button>
@@ -149,6 +151,17 @@
                 </div>
 
                 <div class="row form-group">
+                    <label class="col-sm-4 control-label">Kontrak Kerja</label>
+                    <div class="col-sm-8">
+                    <select class="form-control" name="kontrak" required>
+                        <option disabled="" selected="" value="">Pilih Jenis Kontrak Kerja</option>
+                        <option>Pegawai Tetap</option>
+                        <option>Pegawai Tidak Tetap</option>
+                      </select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
                     <label class="col-sm-4 control-label">Jenis Kelamin</label>
                     <div class="col-sm-8">
                     <select class="form-control" name="jk" required>
@@ -156,6 +169,13 @@
                         <option>Laki-laki</option>
                         <option>Perempuan</option>
                       </select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Foto</label>
+                    <div class="col-sm-8">        
+                        <input type="file" name="foto"  class="form-control" required>
                     </div>
                 </div>
 
@@ -233,6 +253,13 @@
                 </div>
 
                 <div class="row form-group">
+                    <label class="col-sm-4 control-label">Kontrak Kerja</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="alamat" class="form-control" value="{{ $p->kontrak }}" readonly>
+                    </div>
+                </div>
+
+                <div class="row form-group">
                     <label class="col-sm-4 control-label">Jenis Kelamin</label>
                     <div class="col-sm-8">
                         <input type="text" name="jk" class="form-control" value="{{ $p->jk }}" readonly>
@@ -245,8 +272,15 @@
                     <textarea class="form-control"name="deskripsi" readonly>{{$p->alamat}}</textarea>
                     </div>
                 </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Foto</label>
+                    <div class="col-sm-8">
+                       <img  align:center; src="{{URL::to('/')}}/foto/{{$p->foto}}" class="fa-image" width="100px" href="URL::to('/')}}/foto/{{$p->foto}}" readonly> 
+                    </div>
+                </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 </div>             
             </form>
             </div>        
@@ -317,9 +351,20 @@
                 </div>
 
                 <div class="row form-group">
+                    <label class="col-sm-4 control-label">Kontrak Kerja</label>
+                    <div class="col-sm-8">
+                    <select class="form-control" name="kontrak">
+                        <option disabled="" selected="" value="">Pilih Jenis Kontrak Kerja</option>
+                        <option>Pegawai Tetap</option>
+                        <option>Pegawai Tidak Tetap</option>
+                      </select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
                     <label class="col-sm-4 control-label">Jenis Kelamin</label>
                     <div class="col-sm-8">
-                    <select class="form-control" name="jk" required>
+                    <select class="form-control" name="jk">
                         <option disabled="" selected="" value="">Pilih Jenis Kelamin</option>
                         <option>Laki-laki</option>
                         <option>Perempuan</option>
@@ -333,8 +378,17 @@
                     <textarea class="form-control"name="alamat" >{{$p->alamat}}</textarea>
                     </div>
                 </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">foto</label>
+                    <div class="col-sm-8">        
+                        <input type="file" name="foto" class="form-control" >
+                    </div>
+                </div>
+
+            
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary">Edit Pegawai</button>
+                  <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>   
             </form>
             </div>        

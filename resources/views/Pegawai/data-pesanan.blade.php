@@ -41,11 +41,12 @@
                             <thead>
                                 <tr>
                                 <th>No</th>
-                                    <th>Jenis Paket</th>
-                                    <th>Email</th>
-                                    <th>Nama</th>
-                                    <th>Tanggal</th>
-                                    <th width = "15%">Aksi</th>
+                                    <th>Client</th>
+                                    <th>No Hp</th>
+                                    <th>Alamat</th>
+                                    <th>Paket</th>
+                                    <th width = "13%">Tanggal</th>
+                                    <th width = "13%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -53,11 +54,13 @@
                             @if($p->id_pegawai==auth()->user()->id_pegawai)
                                 <tr>
                                     <td>{{++$i}}</td>
-                                    <td>{{$p->paket->jenis}}</td>
-                                    <td>{{$p->konsumen->email}}</td>
                                     <td>{{$p->konsumen->nama}}</td>
+                                    <td><a href="https://wa.me/+62{{$p->konsumen->no_hp}}" style="text-decoration: none; color: #292b35;">{{$p->konsumen->no_hp}}</td>
+                                    <td>{{$p->konsumen->alamat}}</td>
+                                    <td>{{$p->paket->deskripsi}}</td>
                                     <td>{{$p->tgl}}</td>
-                                    <td>      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit{{$p->id_pesanan}}" >Edit</button>
+                                    <td>  
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit{{$p->id_pesanan}}" >Edit</button>    
                                     <div style="float:right;">
                                     <form action="{{route('pesanan-pegawai.destroy', $p->id_pesanan)}}" method="POST">
                                         @csrf
@@ -108,12 +111,12 @@
                 
         
                 <div class="row form-group">
-                <label class="col-sm-4 control-label">Jenis Paket</label>
+                <label class="col-sm-4 control-label">Paket</label>
                     <div class="col-sm-8">        
                     <select class="form-control" type="text" name="id_paket" require>
-                          <option disabled="" selected="" value="">--Pilih Jenis Paket--</option>
+                          <option disabled="" selected="" value="">--Pilih Paket--</option>
                           @foreach($paket as $p)
-                          <option value="{{$p->id_paket}} ">{{$p->jenis}} </option>
+                          <option value="{{$p->id_paket}} ">{{$p->deskripsi}} </option>
                           @endforeach
                           </select>
                     </div>
@@ -127,6 +130,25 @@
                           <option value="{{$k->id_konsumen}} ">{{$k->nama}} </option>
                           @endforeach
                           </select>
+                    </div>
+                </div>
+                
+                <div class="row form-group">
+                <label class="col-sm-4 control-label">Kecamatan</label>
+                    <div class="col-sm-8">        
+                    <select class="form-control" type="text" name="id_transportasi" require>
+                          <option disabled="" selected="" value="">--Pilih Kecamatan--</option>
+                          @foreach($transportasi as $t)
+                          <option value="{{$t->id_transportasi}} ">{{$t->nama_kec}} </option>
+                          @endforeach
+                          </select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Alamat</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="alamat" class="form-control" required >
                     </div>
                 </div>
 
@@ -168,12 +190,12 @@
                 @method('PATCH')
 
                 <div class="row form-group">
-                <label class="col-sm-4 control-label">Jenis Paket</label>
+                <label class="col-sm-4 control-label">Paket</label>
                     <div class="col-sm-8">        
                     <select class="form-control" type="text" name="id_paket" require>
-                          <option disabled="" selected="" value="">--Pilih Jenis Paket--</option>
-                          @foreach($paket as $p)
-                          <option value="{{$p->id_paket}} ">{{$p->jenis}} </option>
+                          <option disabled="" selected="" value="">--Pilih Paket--</option>
+                          @foreach($paket as $pak)
+                          <option value="{{$pak->id_paket}} ">{{$pak->deskripsi}} </option>
                           @endforeach
                           </select>
                     </div>
@@ -194,12 +216,12 @@
                 <div class="row form-group">
                     <label class="col-sm-4 control-label">Tanggal</label>
                     <div class="col-sm-8">
-                        <input type="date" name="tgl" class="form-control" value="{{ $p->tgl }}" >
+                        <input type="date" name="tgl" class="form-control" value="{{$p->tgl}}" >
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary">Edit Client</button>
+                  <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>   
             </form>
             </div>        

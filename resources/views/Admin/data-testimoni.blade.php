@@ -34,13 +34,15 @@
                 <div class="card">
                     <div class="card-header">
                         <strong class="card-title">Data Testimoni</strong>
+                        <div style="float:right;"><button type="danger" class="btn btn-success btn-sm" data-toggle="modal" data-target="#tambah" >Tambah Testimoni</button></div>
+
                     </div>
                     <div class="card-body">
                         <table id="bootstrap-data-table" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Email</th>
+                                    <th>Client</th>
                                     <th>Caption</th>
                                     <th>Foto</th>
                                     <th width = "15%">Aksi</th>
@@ -50,7 +52,7 @@
                             @foreach($testimoni as $t)
                                 <tr>
                                     <td>{{++$i}}</td>
-                                    <td>{{$t->konsumen->email}}</td>
+                                    <td>{{$t->konsumen->nama}}</td>
                                     <td>{{$t->caption}}</td>
                                     <td><img  align:center; src="{{URL::to('/')}}/foto/{{$t->foto}}" class="fa-image" width="100px" href="URL::to('/')}}/foto/{{$t->foto}}" ></td>
                                     <td>      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit{{$t->id_testimoni}}" >Edit</button>
@@ -73,6 +75,72 @@
     </div><!-- .animated -->
 </div><!-- .content -->
 
+<!-- Modal tambah -->
+<div id="tambah" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- konten modal-->
+        <div class="modal-content">
+            <!-- heading modal -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="mediumModalLabel">Tambah Testimoni</h5>
+               
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>        
+            </div>
+   
+            <!-- body modal -->
+            <div class="modal-body">
+            @if(Session::has('success'))
+                        <div class="alert alert-success">
+                            {{ Session::get('success') }}
+                            @php
+                                Session::forget('success');
+                            @endphp
+                        </div>
+                        @endif
+              <form action="{{route('testimoni.store')}}" class="form-horizontal tasi-form" method="post" enctype="multipart/form-data">
+                @csrf
+
+                <div class="row form-group">
+                <label class="col-sm-4 control-label">Client</label>
+                    <div class="col-sm-8">        
+                    <select class="form-control" type="text" name="id_konsumen" required>
+                          <option disabled="" selected="" value="">Pilih Client</option>
+                          @foreach($konsumen as $client)
+                          
+                          <option value="{{$client->id_konsumen}} ">{{$client->nama}} </option>
+                          
+                          @endforeach
+                          </select>
+                    </div>
+                </div>
+        
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Caption</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="caption" class="form-control" required >
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Foto</label>
+                    <div class="col-sm-8">
+                        <input type="file" name="foto" class="form-control" required >
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Tambah Testimoni</button>
+                </div>
+              </form>
+            </div>        
+        </div>
+    </div>
+</div>
+<!-- /akhir tambah -->
+
 
 
 @foreach ($testimoni as $t)
@@ -93,6 +161,20 @@
             <form action="{{route('testimoni.update', $t->id_testimoni)}}" class="form-horizontal tasi-form" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
+
+                <div class="row form-group">
+                <label class="col-sm-4 control-label">Client</label>
+                    <div class="col-sm-8">        
+                    <select class="form-control" type="text" name="id_konsumen" >
+                          <option disabled="" selected="" value="">Pilih Client</option>
+                          @foreach($konsumen as $client)
+                          
+                          <option value="{{$client->id_konsumen}} ">{{$client->nama}} </option>
+                          
+                          @endforeach
+                          </select>
+                    </div>
+                </div>
                 <div class="row form-group">
                     <label class="col-sm-4 control-label">Caption</label>
                     <div class="col-sm-8">        
@@ -106,7 +188,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary">Edit Testimoni</button>
+                  <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>   
             </form>
             </div>        

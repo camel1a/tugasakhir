@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
-    <link rel="shortcut icon" href="images/logo2.png">
+    <link rel="shortcut icon" href="../images/logo2.png">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
@@ -81,7 +81,7 @@
                     </li>
 
                     <li>
-                        <a href="{{URL('admin/konsumen')}}"> <i class="menu-icon fa fa-id-card-o"></i>Data Konsumen </a>
+                        <a href="{{URL('admin/konsumen')}}"> <i class="menu-icon fa fa-id-card-o"></i>Data Client</a>
                     </li>
 
                     <li>
@@ -90,6 +90,10 @@
 
                     <li>
                         <a href="{{URL('admin/paket')}}"> <i class="menu-icon ti-package"></i>Data Paket </a>
+                    </li>
+                    
+                    <li>
+                        <a href="{{URL('admin/transportasi')}}"> <i class="menu-icon ti-car"></i>Data Transportasi</a>
                     </li>
 
                     <li>
@@ -101,12 +105,22 @@
                     </li>
 
                     <li>
-                        <a href="{{URL('admin/pemasukkan')}}"> <i class="menu-icon ti-wallet"></i>Data Pemasukan </a>
+                        <a href="{{URL('admin/pemasukkan')}}"> <i class="menu-icon ti-wallet"></i>Data Pemasukkan </a>
                     </li>
 
                     <li>
                         <a href="{{URL('admin/pengeluaran')}}"> <i class="menu-icon ti-wallet"></i>Data Pengeluaran </a>
                     </li>
+
+                    <li>
+                        <a href="{{URL('admin/landing')}}"> <i class="menu-icon ti-layers"></i>Data Landing Page</a>
+                    </li>
+
+                    <!-- <li>
+                        <a href="{{URL('admin/pertanyaan')}}"> <i class="menu-icon ti-comments"></i>Data Pertanyaan</a>
+                    </li> -->
+
+                    
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -185,7 +199,7 @@
                                     <div class="stat-content">
                                         <div class="text-left dib">
                                             <div class="stat-text"><span class="count">{{$konsumen}}</span></div>
-                                            <div class="stat-heading">Jumlah Konsumen</div>
+                                            <div class="stat-heading">Jumlah Client</div>
                                         </div>
                                     </div>
                                 </div>

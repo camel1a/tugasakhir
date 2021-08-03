@@ -1,5 +1,5 @@
 @extends('admin.template')
-@section('title','Data Konsumen' )
+@section('title','Data Client' )
 @section('content') 
 <div class="breadcrumbs">
     <div class="breadcrumbs-inner">
@@ -45,7 +45,7 @@
                                     <th>Email</th>
                                     <th>No HP</th>
                                     <th>Alamat</th>
-                                    <th width = "22%">Aksi</th>
+                                    <th width = "20%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,7 +54,7 @@
                                     <td>{{++$i}}</td>
                                     <td>{{$k->nama}}</td>
                                     <td>{{$k->email}}</td>
-                                    <td>{{$k->no_hp}}</td>
+                                    <td><a href="https://wa.me/+62{{$k->no_hp}}" style="text-decoration: none; color: #292b35;">{{$k->no_hp}}</td>
                                     <td>{{$k->alamat}}</td>
                                     <td>
                               <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit{{$k->id_konsumen}}" >Edit</button>
@@ -204,7 +204,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 </div>             
             </form>
             </div>        
@@ -239,6 +239,14 @@
                     </div>
                 </div>
 
+                
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Email</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="email" class="form-control" value="{{ $k->email }}" >
+                    </div>
+                </div>
+
                 <div class="row form-group">
                     <label class="col-sm-4 control-label">Password</label>
                     <div class="col-sm-8">        
@@ -246,12 +254,6 @@
                     </div>
                 </div>
 
-                <div class="row form-group">
-                    <label class="col-sm-4 control-label">Email</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="email" class="form-control" value="{{ $k->email }}" >
-                    </div>
-                </div>
 
                 <div class="row form-group">
                     <label class="col-sm-4 control-label">No Hp</label>
@@ -267,7 +269,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary">Edit Client</button>
+                  <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>   
             </form>
             </div>        

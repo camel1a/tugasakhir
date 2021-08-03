@@ -31,7 +31,7 @@ class AdminPemasukanController extends Controller
             'tgl'=>$request->tgl
         );
         Pemasukan::create($data);
-        return redirect('admin\Pemasukan')->with('success','Data konsumen berhasil ditambah');
+        return redirect('admin\pemasukan')->with('success','Data konsumen berhasil ditambah');
     }
 
     /**

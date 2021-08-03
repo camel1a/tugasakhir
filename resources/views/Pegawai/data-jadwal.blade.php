@@ -41,11 +41,11 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Email</th>
+                                    <th>Nama</th>
                                     <th>Kepentingan</th>
                                     <th>Tanggal</th>
                                     <th>Status</th>
-                                    <th width = "22%">Aksi</th>
+                                    <th width = "19%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -53,11 +53,12 @@
                             @if($j->id_pegawai==auth()->user()->id_pegawai)
                                 <tr>
                                     <td>{{++$i}}</td>
-                                    <td>{{$j->konsumen->email}}</td>
+                                    <td>{{$j->konsumen->nama}}</td>
                                     <td>{{$j->kepentingan}}</td>
                                     <td>{{$j->tgl}}</td>
                                     <td>{{$j->status}}</td>
-                                    <td>      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit{{$j->id_jadwal}}" >Edit</button>
+                                    <td>  
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit{{$j->id_jadwal}}" >Edit</button>
                                     <button type="danger" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#detail{{$j->id_jadwal}}" >Detail</button>
                                     <div style="float:right;">
                                     <form action="{{route('jadwal-pegawai.destroy', $j->id_jadwal)}}" method="POST">
@@ -158,12 +159,7 @@
             <form action="{{route('jadwal-pegawai.update', $j->id_jadwal)}}" class="form-horizontal tasi-form" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
-                <div class="row form-group">
-                    <label class="col-sm-4 control-label">Tanggal</label>
-                    <div class="col-sm-8">        
-                        <input type="date" name="tgl" class="form-control" value ="{{$j->tgl}}" >
-                    </div>
-                </div>
+                
                 <div class="row form-group">
                     <label class="col-sm-4 control-label">Kepentingan</label>
                     <div class="col-sm-8">        
@@ -176,8 +172,16 @@
                         <input type="text" name="status" class="form-control" value ="{{$j->status}}" >
                     </div>
                 </div>
+                
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Tanggal</label>
+                    <div class="col-sm-8">        
+                        <input type="date" name="tgl" class="form-control" value ="{{$j->tgl}}" >
+                    </div>
+                </div>
+
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary">Edit Jadwal</button>
+                  <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>   
             </form>
             </div>        

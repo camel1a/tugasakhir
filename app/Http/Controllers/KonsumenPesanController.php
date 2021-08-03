@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pesanan;
 use App\Models\Paket;
+use App\Models\Transportasi;
+use App\Models\Transaksi;
+
+
 
 class KonsumenPesanController extends Controller
 {
@@ -18,7 +22,10 @@ class KonsumenPesanController extends Controller
     {
         $pesanan = Pesanan::all();
         $paket = Paket::all();
-        return view('Konsumen.pesan-paket',compact('pesanan','paket'))->with('i');
+        $transportasi = Transportasi::all();
+        $transaksi = Transaksi::all();
+
+        return view('Konsumen.pesan-paket',compact('pesanan','paket','transportasi','transaksi'))->with('i');
     }
 
     /**
@@ -34,6 +41,8 @@ class KonsumenPesanController extends Controller
             'id_konsumen'=>auth()->user()->id_konsumen,
             'id_pegawai'=>1,
             'id_paket'=>$request->id_paket,
+            'id_transportasi'=>$request->id_transportasi,
+            'alamat'=>$request->alamat,
             'tgl'=>$request->tgl
         );
         Pesanan::create($data);
@@ -49,18 +58,28 @@ class KonsumenPesanController extends Controller
     // untuk edit
     public function update(Request $request, $id)
     {
-         if($request->has('id_paket'))
+        if($request->has('id_paket'))
         {
             $data = array(
                 'id_paket'=>$request->id_paket,
             );
         Pesanan::whereid_pesanan($id)->update($data);
         }
-            $data = array(
-            'id_paket'=>$request->id_paket,
-            'tgl'=>$request->tgl
-            );
-        Pesanan::whereid_pesanan($id)->update($data);
+            if($request->has('id_transportasi'))
+            {
+                $data = array(
+                    'id_transportasi'=>$request->id_transportasi,
+                );
+            Pesanan::whereid_pesanan($id)->update($data);
+            }
+            if($request->has('tgl'))
+            {
+                $data = array(
+                    'tgl'=>$request->tgl,
+                );
+            Pesanan::whereid_pesanan($id)->update($data);
+            }
+            
         return redirect('konsumen\pesan-konsumen');
 
     }

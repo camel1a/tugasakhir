@@ -45,7 +45,7 @@
                                     <th>Kepentingan</th>
                                     <th>Tanggal</th>
                                     <th>Status</th>
-                                    <th width = "22%">Aksi</th>
+                                    <th width = "19%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -223,7 +223,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary">Edit Jadwal</button>
+                  <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>   
             </form>
             </div>        

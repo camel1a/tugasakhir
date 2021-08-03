@@ -40,8 +40,8 @@
                     <form action="/kirimdata" method="post">
                     {{csrf_field()}}
                         <div class="form-group">
-                            <label>Username</label>
-                            <input name="username" type="text" class="form-control" placeholder="username">
+                            <label>Email/Username</label>
+                            <input name="username" type="text" class="form-control" placeholder="Email/Username">
                         </div>
                         <div class="form-group">
                             <label>Password</label>

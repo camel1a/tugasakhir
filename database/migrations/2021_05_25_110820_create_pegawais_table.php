@@ -23,6 +23,8 @@ class CreatePegawaisTable extends Migration
             $table->string('jobdesk');
             $table->string('alamat');
             $table->string('jk');
+            $table->string('kontrak');
+            $table->string('foto');
             $table->timestamps();
         });
     }

@@ -7,6 +7,9 @@ use App\Models\Pesanan;
 use App\Models\Paket;
 use App\Models\konsumen;
 use App\Models\Pegawai;
+use App\Models\Transportasi;
+use App\Models\Transaksi;
+use App\Models\Kabupaten;
 
 class AdminPesananController extends Controller
 {
@@ -21,7 +24,10 @@ class AdminPesananController extends Controller
         $paket = Paket::all();
         $konsumen = Konsumen::all();
         $pegawai = Pegawai::all();
-        return view('Admin.data-pesanan',compact('pesanan','paket','konsumen','pegawai'))->with('i');
+        $transportasi = Transportasi::all();
+        $transaksi = Transaksi::all();
+        $kabupaten = Kabupaten::all();
+        return view('Admin.data-pesanan',compact('pesanan','paket','konsumen','pegawai','transportasi','transaksi','kabupaten'))->with('i');
     }
 
     /**
@@ -36,10 +42,20 @@ class AdminPesananController extends Controller
         $data = array(
             'id_konsumen'=>$request->id_konsumen,
             'id_paket'=>$request->id_paket,
+            'id_pegawai'=>$request->id_pegawai,
+            'id_transportasi'=>$request->id_transportasi,
+            'alamat'=>$request->alamat,
             'tgl'=>$request->tgl
         );
         Pesanan::create($data);
         return redirect('admin\pesanan')->with('success','Data Pesanan berhasil ditambah');
+    }
+
+    public function show($id)
+    {
+        $data1= Pesanan::find($id);
+        return view('Admin.admin-detail-pesanan',compact('data1'))->with('i');
+
     }
 
     /**
@@ -74,6 +90,22 @@ class AdminPesananController extends Controller
                 );
             Pesanan::whereid_pesanan($id)->update($data);
             }
+            
+            if($request->has('id_transportasi'))
+            {
+                $data = array(
+                    'id_transportasi'=>$request->id_transportasi,
+                );
+            Pesanan::whereid_pesanan($id)->update($data);
+            }
+
+            if($request->has('alamat'))
+            {
+                $data = array(
+                    'alamat'=>$request->alamat,
+                );
+            Pesanan::whereid_pesanan($id)->update($data);
+            }
 
             if($request->has('tgl'))
             {
@@ -103,4 +135,6 @@ class AdminPesananController extends Controller
             return redirect('admin\pesanan')->withErrors('Data gagal dihapus. Harap hapus data yang terkait');
         }
     }
+
+    
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Testimoni;
+use App\Models\konsumen;
+
 
 class AdminTestimoniController extends Controller
 {
@@ -15,7 +17,9 @@ class AdminTestimoniController extends Controller
     public function index()
     {
         $testimoni = Testimoni::all();
-        return view('Admin.data-testimoni',compact('testimoni'))->with('i');
+        $konsumen = Konsumen::all();
+
+        return view('Admin.data-testimoni',compact('testimoni','konsumen'))->with('i');
     }
 
     /**
@@ -25,7 +29,17 @@ class AdminTestimoniController extends Controller
      */
     public function store(Request $request)
     {
+        $foto = $request->file('foto');
+        $new_name = rand().'.'.$foto->getClientOriginalExtension();
+        $foto->move(public_path('foto'), $new_name);
         
+        $data = array(
+            'id_konsumen'=>$request->id_konsumen,
+            'caption'=>$request->caption,
+            'foto'=>$new_name
+        );
+        Testimoni::create($data);
+        return redirect('admin\testimoni')->with('success','Data Pegawai berhasil ditambah');
     }
 
     /**
@@ -47,10 +61,20 @@ class AdminTestimoniController extends Controller
             );
         Testimoni::whereid_testimoni($id)->update($data);
         }
-            $data = array(
-                'caption'=>$request->caption
-            );
+        if($request->has('id_konsumen'))
+        {
+                $data = array(
+                    'id_konsumen'=>$request->id_konsumen,
+                );
         Testimoni::whereid_testimoni($id)->update($data);
+        }
+        if($request->has('caption'))
+        {
+                $data = array(
+                    'caption'=>$request->caption,
+                );
+        Testimoni::whereid_testimoni($id)->update($data);
+        }
         return redirect('admin\testimoni');
 
     }

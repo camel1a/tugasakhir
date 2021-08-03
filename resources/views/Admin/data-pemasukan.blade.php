@@ -43,8 +43,8 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Jenis Pemasukan</th>
-                                    <th>Nominal Pemasukan</th>
+                                    <th>Jenis Pemasukkan</th>
+                                    <th>Nominal Pemasukkan</th>
                                     <th>Tanggal</th>
                                     <th width = "15%">Aksi</th>
                                 </tr>
@@ -104,13 +104,13 @@
                 @csrf
                 
                 <div class="row form-group">
-                    <label class="col-sm-4 control-label">Jenis Pemasukan</label>
+                    <label class="col-sm-4 control-label">Jenis Pemasukkan</label>
                     <div class="col-sm-8">        
                         <input type="tesxt" name="jenis" class="form-control" required >
                     </div>
                 </div>
                 <div class="row form-group">
-                    <label class="col-sm-4 control-label">Nominal Pemasukan</label>
+                    <label class="col-sm-4 control-label">Nominal Pemasukkan</label>
                     <div class="col-sm-8">        
                         <input type="text" name="nominal" class="form-control" required >
                     </div>
@@ -171,7 +171,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary">Edit Pemasukkan</button>
+                  <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>   
             </form>
             </div>        

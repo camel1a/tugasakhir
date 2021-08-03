@@ -40,23 +40,31 @@
                         <table id="bootstrap-data-table" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                <th>No</th>
-                                    <th>Jenis Paket</th>
+                                    <th>No</th>
                                     <th>Client</th>
-                                    <th>Pegawai</th>
-                                    <th>Tanggal</th>
-                                    <th width = "15%">Aksi</th>
+                                    <th>No Hp</th>
+                                    <th>Paket</th>
+                                    <th>Alamat</th>
+                                    <th width = "15%">Total Harga</th>
+                                    <th width = "26%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                             @foreach($pesanan as $p)
+                            @php
+                            $potal=$p->paket->harga+$p->transportasi->harga;
+                            @endphp
                                 <tr>
                                     <td>{{++$i}}</td>
-                                    <td>{{$p->paket->jenis}}</td>
-                                    <td>{{$p->konsumen->nama}}</td>
-                                    <td>{{$p->pegawai->nama}}</td>
-                                    <td>{{$p->tgl}}</td>
-                                    <td>      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit{{$p->id_pesanan}}" >Edit</button>
+                                    <td><a href="detail/{{$p->id_pesanan}} "  style="text-decoration: none; color: #292b35;" data-toggle="modal" data-target="#detail{{$p->id_konsumen}}" >{{$p->konsumen->nama}}</td>
+                                    <td><a href="https://wa.me/+62{{$p->konsumen->no_hp}}" style="text-decoration: none; color: #292b35;">{{$p->konsumen->no_hp}}</td>
+                                    <td>{{$p->paket->deskripsi}}</td>
+                                    <td>{{$p->alamat}}</td>
+                                    <td><?PHP echo "Rp. " . number_format($potal, 0, ".", "."); ?></td>
+                                    <td>     
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#bayar{{$p->id_pesanan}}" >Bayar</button>
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit{{$p->id_pesanan}}" >Edit</button>
+                                    <a href="detail/{{$p->id_pesanan}}" class="btn btn-warning btn-sm">Detail</a>
                                     <div style="float:right;">
                                     <form action="{{route('pesanan.destroy', $p->id_pesanan)}}" method="POST">
                                         @csrf
@@ -65,9 +73,59 @@
                                     </form>
                                     </div>
                                     </td>
-
                                 </tr>    
-                                @endforeach                                       
+                                @endforeach                                   
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Data Pembayaran</strong>
+                        <div style="float:right;">
+                         </div>
+                    </div>
+                    <div class="card-body">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Client</th>
+                                    <th>Metode Pembayaran</th>
+                                    <th>Nominal</th>
+                                    <th>Bukti Pembayaran</th>
+                                    <th width = "26%">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @php
+                            $i=0;
+                            @endphp
+                            @foreach($transaksi as $t)
+                                <tr>
+                                    <td>{{++$i}}</td>
+                                    <td>{{$t->pesanan->konsumen->nama}}</td>
+                                    <td>{{$t->metode}}</td>
+                                    <td><?PHP echo "Rp. " . number_format($t->nominal, 0, ".", "."); ?></td>
+                                    <td><img  align:center; src="{{URL::to('/')}}/foto/{{$t->foto}}" class="fa-image" width="100px" href="URL::to('/')}}/foto/{{$t->foto}}" ></td>
+                                    <td>  
+                                    <a href="{{route('cetakAdmin', $t->id_transaksi)}}" target="_blank" class="btn btn-info btn-sm">Cetak</a>       
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edittransaksi{{$t->id_transaksi}}" >Edit</button>
+                                    <button type="danger" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#detailtransaksi{{$t->id_transaksi}}" >Detail</button>
+                                    <div style="float:right;">
+                                    <form action="{{route('transaksi.destroy', $t->id_transaksi)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Hapus</i></a>
+                                    </form>
+                                    </div>
+                                    </td>
+                                </tr>  
+                                
+                                @endforeach                                      
                             </tbody>
                         </table>
                     </div>
@@ -101,29 +159,45 @@
                             @endphp
                         </div>
                         @endif
-                <form action="{{route('pesanan.store')}}" class="form-horizontal tasi-form" method="post" enctype="multipart/form-data">
+                        <form action="{{route('pesanan.store')}}" class="form-horizontal tasi-form" method="post" enctype="multipart/form-data">
                 @csrf
                 
-        
                 <div class="row form-group">
-                <label class="col-sm-4 control-label">Jenis Paket</label>
+                <label class="col-sm-4 control-label">Client</label>
                     <div class="col-sm-8">        
-                    <select class="form-control" type="text" name="id_paket" require>
-                          <option disabled="" selected="" value="">--Pilih Jenis Paket--</option>
-                          @foreach($paket as $p)
-                          <option value="{{$p->id_paket}} ">{{$p->jenis}} </option>
+                    <select class="form-control" type="text" name="id_konsumen" required>
+                          <option disabled="" selected="" value="">Pilih Client</option>
+                          @foreach($konsumen as $client)
+                          
+                          <option value="{{$client->id_konsumen}} ">{{$client->nama}} </option>
+                          
                           @endforeach
                           </select>
                     </div>
                 </div>
+                
                 <div class="row form-group">
-                <label class="col-sm-4 control-label">Nama</label>
+                <label class="col-sm-4 control-label">Pegawai</label>
                     <div class="col-sm-8">        
-                    <select class="form-control" type="text" name="id_konsumen" require>
-                          <option disabled="" selected="" value="">--Pilih Nama--</option>
-                          @foreach($konsumen as $k)
+                    <select class="form-control" type="text" name="id_pegawai" required>
+                          <option disabled="" selected="" value="">Pilih Pegawai</option>
+                          @foreach($pegawai as $peg)
+                          @if($peg->id_pegawai != 1)
+                          <option value="{{$peg->id_pegawai}} ">{{$peg->nama}} </option>
+                          @endif
+                          @endforeach
+                          </select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                <label class="col-sm-4 control-label">Paket</label>
+                    <div class="col-sm-8">        
+                    <select class="form-control" type="text" name="id_paket" required>
+                          <option disabled="" selected="" value="">Pilih Paket</option>
+                          @foreach($paket as $pak)
                           
-                          <option value="{{$k->id_konsumen}} ">{{$k->nama}} </option>
+                          <option value="{{$pak->id_paket}} ">{{$pak->deskripsi}} </option>
                           
                           @endforeach
                           </select>
@@ -131,9 +205,30 @@
                 </div>
 
                 <div class="row form-group">
+                <label class="col-sm-4 control-label">Kecamatan</label>
+                    <div class="col-sm-8">        
+                    <select class="form-control" type="text" name="id_transportasi" required>
+                          <option disabled="" selected="" value="">Pilih Kecamatan</option>
+                          @foreach($transportasi as $t)
+                          
+                          <option value="{{$t->id_transportasi}} ">{{$t->nama_kec}} </option>
+                          
+                          @endforeach
+                          </select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Alamat</label>
+                    <div class="col-sm-8">        
+                    <textarea class="form-control"name="alamat" type="text" required ></textarea>
+                    </div>
+                </div>
+
+                <div class="row form-group">
                     <label class="col-sm-4 control-label">Tanggal</label>
-                    <div class="col-sm-8">
-                        <input type="date" name="tgl" class="form-control" required >
+                    <div class="col-sm-8">        
+                        <input type="date" name="tgl" class="form-control" required>
                     </div>
                 </div>
 
@@ -145,8 +240,232 @@
         </div>
     </div>
 </div>
+
+@foreach($pesanan as $p)
+<div id="bayar{{$p->id_pesanan}}" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- konten modal-->
+        <div class="modal-content">
+            <!-- heading modal -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="mediumModalLabel">Pembayaran</h5>
+               
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>        
+            </div>
+   
+            <!-- body modal -->
+            <div class="modal-body">
+            @if(Session::has('success'))
+                        <div class="alert alert-success">
+                            {{ Session::get('success') }}
+                            @php
+                                Session::forget('success');
+                            @endphp
+                        </div>
+                        @endif
+              <form action="{{route('transaksi.store')}}" class="form-horizontal tasi-form" method="post" enctype="multipart/form-data">
+                @csrf
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Nominal</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="nominal" class="form-control" required >
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Pembayaran</label>
+                    <div class="col-sm-8">
+                    <select class="form-control" name="pembayaran" required>
+                        <option disabled="" selected="" value="">Pilih Pembayaran</option>
+                        <option>DP 1 Untuk Blok Tanggal</option>
+                        <option>DP 2 10 Hari Sebelum Hari H</option>
+                        <option>Pelunasan</option>
+                      </select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Status Pembayaran</label>
+                    <div class="col-sm-8">
+                    <select class="form-control" name="status" required>
+                        <option disabled="" selected="" value="">Pilih Status Pembayaran</option>
+                        <option>Belum Bayar</option>
+                        <option>Sudah Bayar</option>
+                      </select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Tanggal</label>
+                    <div class="col-sm-8">
+                        <input type="date" name="tgl" class="form-control" required >
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Bukti Pembayaran</label>
+                    <div class="col-sm-8">
+                        <input type="file" name="foto" class="form-control" required >
+                    </div>
+                </div>
+
+                <input type="hidden" name="id_pesanan" value="{{$p->id_pesanan}}">
+
+
+
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Tambah Pembayaran</button>
+                </div>
+              </form>
+            </div>        
+        </div>
+    </div>
+</div>
+@endforeach
 <!-- /akhir tambah -->
 
+@foreach ($konsumen as $k)
+<!-- Modal Detail Data  -->
+<div id="detail{{$k->id_konsumen}}" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- konten modal-->
+        <div class="modal-content">
+            <!-- heading modal -->
+            <div class="modal-header">
+              
+            </div>
+            <!-- body modal -->
+            <div class="modal-body">
+            <form action="#" class="form-horizontal tasi-form" method="post" enctype="multipart/form-data">                
+                
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Client</label>
+                    <div class="col-sm-8">        
+                        <input type="text" name="nama" class="form-control" value="{{ $k->nama}}" readonly>
+                    </div>
+                </div>
+
+                
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Email</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="email" class="form-control" value="{{ $k->email }}" readonly>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Password</label>
+                    <div class="col-sm-8">        
+                        <input type="text" name="password" class="form-control" value="{{ $k->password}}" readonly>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">No Hp</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="no_hp" class="form-control" value="{{ $k->no_hp }}" readonly>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Alamat</label>
+                    <div class="col-sm-8">
+                    <textarea class="form-control"name="alamat" readonly>{{$k->alamat}}</textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                </div>             
+            </form>
+            </div>        
+        </div>
+    </div>
+</div>
+@endforeach
+
+@foreach ($transaksi as $t)
+<!-- Modal Detail Data  -->
+<div id="detailtransaksi{{$t->id_transaksi}}" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- konten modal-->
+        <div class="modal-content">
+            <!-- heading modal -->
+            <div class="modal-header">
+              
+            </div>
+            <!-- body modal -->
+            <div class="modal-body">
+            <form action="#" class="form-horizontal tasi-form" method="post" enctype="multipart/form-data">                
+                
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Client</label>
+                    <div class="col-sm-8">        
+                        <input type="text" name="id_pesanan" class="form-control" value="{{$t->pesanan->konsumen->nama}}" readonly>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Paket</label>
+                    <div class="col-sm-8">        
+                        <input type="text" name="id_pesanan" class="form-control" value="{{$t->pesanan->paket->deskripsi}}" readonly>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Metode Pembayaran</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="metode" class="form-control" value="{{$t->metode}}" readonly>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Nominal</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="nominal" class="form-control" value="<?PHP echo "Rp. " . number_format($t->nominal, 0, ".", "."); ?>" readonly>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">pembayaran </label>
+                    <div class="col-sm-8">
+                        <input type="text" name="pembayaran" class="form-control" value="{{$t->pembayaran}}" readonly>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Status </label>
+                    <div class="col-sm-8">
+                        <input type="text" name="status" class="form-control" value="{{$t->status}}" readonly>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Tanggal</label>
+                    <div class="col-sm-8">
+                        <input type="date" name="tgl" class="form-control" value="{{ $t->tgl }}" readonly>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Bukti Pembayaran</label>
+                    <div class="col-sm-8">
+                       <img  align:center; src="{{URL::to('/')}}/foto/{{$t->foto}}" class="fa-image" width="100px" href="URL::to('/')}}/foto/{{$t->foto}}" readonly> 
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>             
+            </form>
+            </div>        
+        </div>
+    </div>
+</div>
+@endforeach
 
 @foreach ($pesanan as $p)
 <!-- Modal Ubah Data  -->
@@ -168,57 +487,188 @@
                 @method('PATCH')
 
                 <div class="row form-group">
-                <label class="col-sm-4 control-label">Jenis Paket</label>
+                <label class="col-sm-4 control-label">Client</label>
                     <div class="col-sm-8">        
-                    <select class="form-control" type="text" name="id_paket" require>
-                          <option disabled="" selected="" value="">--Pilih Jenis Paket--</option>
-                          @foreach($paket as $paket)
-                          <option value="{{$paket->id_paket}} ">{{$paket->jenis}} </option>
+                    <select class="form-control" type="text" name="id_konsumen" >
+                          <option disabled="" selected="" value="">Pilih Client</option>
+                          @foreach($konsumen as $client)
+                          
+                          <option value="{{$client->id_konsumen}} ">{{$client->nama}} </option>
+                          
                           @endforeach
                           </select>
                     </div>
                 </div>
 
                 <div class="row form-group">
-                <label class="col-sm-4 control-label">Nama</label>
-                    <div class="col-sm-8">        
-                    <select class="form-control" type="text" name="id_konsumen" require>
-                          <option disabled="" selected="" value="">--Pilih Nama--</option>
-                          @foreach($konsumen as $k)
-                          <option value="{{$k->id_konsumen}} ">{{$k->nama}} </option>
-                          @endforeach
-                          </select>
+                    <label class="col-sm-4 control-label">Pegawai</label>
+                    <div class="col-sm-8">
+                    <select class="form-control" name="id_pegawai" >
+                        <option disabled="" selected="" value="">Pilih Pegawai</option>
+                        @foreach($pegawai as $peg)
+                        @if($peg->id_pegawai != 1)
+                        <option value="{{$peg->id_pegawai}} ">{{$peg->nama}} </option>
+                        @endif
+                        @endforeach
+                      </select>
                     </div>
                 </div>
 
                 <div class="row form-group">
-                <label class="col-sm-4 control-label">Pegawai</label>
+                <label class="col-sm-4 control-label">Paket</label>
                     <div class="col-sm-8">        
-                    <select class="form-control" type="text" name="id_pegawai" require>
-                          <option disabled="" selected="" value="">--Pilih Nama--</option>
-                          @foreach($pegawai as $pegawai)
-                          @if($pegawai->id_pegawai != 1)
-                          <option value="{{$pegawai->id_pegawai}} ">{{$pegawai->nama}} </option>
-                          @endif
+                    <select class="form-control" type="text" name="id_paket" >
+                          <option disabled="" selected="" value="">Pilih Paket</option>
+                          @foreach($paket as $pak)
+                          
+                          <option value="{{$pak->id_paket}} ">{{$pak->deskripsi}} </option>
+                          
                           @endforeach
                           </select>
+                    </div>
+                </div>
+                
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Lokasi</label>
+                    <div class="col-sm-8">
+                    <select class="form-control" name="id_transportasi" >
+                        <option disabled="" selected="" value="">Pilih Lokasi Kecamatan</option>
+                        @foreach($transportasi as $t)
+                        <option value="{{$t->id_transportasi}} ">{{$t->nama_kec}} </option>
+                        @endforeach
+                      </select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Alamat</label>
+                    <div class="col-sm-8">        
+                    <textarea class="form-control"name="alamat" >{{$p->alamat}}</textarea>
                     </div>
                 </div>
 
                 <div class="row form-group">
                     <label class="col-sm-4 control-label">Tanggal</label>
-                    <div class="col-sm-8">
-                        <input type="date" name="tgl" class="form-control" value="{{ $p->tgl }}" >
+                    <div class="col-sm-8">        
+                        <input type="date" name="tgl" class="form-control" value ="{{$p->tgl}}" >
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary">Edit Client</button>
-                </div>   
+                  <button type="submit" class="btn btn-primary">Simpan</button>
+                </div> 
             </form>
             </div>        
         </div>
     </div>
 </div>
 @endforeach
+
+@foreach ($transaksi as $transaksi)
+<!-- Modal Ubah Data  -->
+<div id="edittransaksi{{$transaksi->id_transaksi}}" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- konten modal-->
+        <div class="modal-content">
+            <!-- heading modal -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="mediumModalLabel">Edit Pembayaran</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- body modal -->
+            <div class="modal-body">
+            <form action="{{route('transaksi.update', $transaksi->id_transaksi)}}" class="form-horizontal tasi-form" method="post" enctype="multipart/form-data">
+                @csrf
+                @method('PATCH')
+
+                <div class="row form-group">
+                <label class="col-sm-4 control-label">Client</label>
+                    <div class="col-sm-8">        
+                    <select class="form-control" type="text" name="id_pesanan" require>
+                          <option disabled="" selected="" value="">Pilih Client</option>
+                          @foreach($pesanan as $p)
+                          
+                          <option value="{{$p->id_pesanan}} ">{{$p->konsumen->nama}} </option>
+                          
+                          @endforeach
+                          </select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                <label class="col-sm-4 control-label">Paket</label>
+                    <div class="col-sm-8">        
+                    <select class="form-control" type="text" name="id_pesanan" require>
+                          <option disabled="" selected="" value="">Pilih Paket</option>
+                          @foreach($pesanan as $p)
+                          
+                          <option value="{{$p->id_pesanan}} ">{{$p->paket->deskripsi}} </option>
+                          
+                          @endforeach
+                          </select>
+                    </div>
+                </div>
+
+
+            
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Nominal</label>
+                    <div class="col-sm-8">        
+                        <input type="text" name="nominal" class="form-control" value ="{{$transaksi->nominal}}" >
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Pembayaran</label>
+                    <div class="col-sm-8">
+                    <select class="form-control" name="pembayaran" >
+                        <option disabled="" selected="" value="">Pilih Pembayaran</option>
+                        <option>DP 1 Untuk Blok Tanggal</option>
+                        <option>DP 2 10 Hari Sebelum Hari H</option>
+                        <option>Pelunasan</option>
+                      </select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Status</label>
+                    <div class="col-sm-8">
+                    <select class="form-control" name="status" >
+                        <option disabled="" selected="" value="">Pilih Status Pembayaran</option>
+                        <option>Belum Bayar</option>
+                        <option>Sudah Bayar</option>
+                      </select>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Tanggal</label>
+                    <div class="col-sm-8">        
+                        <input type="date" name="tgl" class="form-control" value ="{{$transaksi->tgl}}" >
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Bukti Pembayaran</label>
+                    <div class="col-sm-8">        
+                        <input type="file" name="foto" class="form-control" >
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Simpan</button>
+                </div> 
+            </form>
+            </div>        
+        </div>
+    </div>
+</div>
+@endforeach
+
+
+
+
 @endsection

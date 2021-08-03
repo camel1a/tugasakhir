@@ -47,9 +47,7 @@
                     </li>
 
                     <li>
-                        <a href="{{URL('admin/konsumen')}}"> <i class="menu-icon fa fa-id-card-o"></i>Data Client
-                        
-                         </a>
+                        <a href="{{URL('admin/konsumen')}}"> <i class="menu-icon fa fa-id-card-o"></i>Data Client </a>
                     </li>
 
                     <li>
@@ -61,6 +59,10 @@
                     </li>
 
                     <li>
+                        <a href="{{URL('admin/transportasi')}}"> <i class="menu-icon ti-car"></i>Data Transportasi</a>
+                    </li>
+
+                    <li>
                         <a href="{{URL('admin/jadwal')}}"> <i class="menu-icon fa fa-calendar"></i>Data Jadwal </a>
                     </li>
 
@@ -69,12 +71,22 @@
                     </li>
 
                     <li>
-                        <a href="{{URL('admin/pemasukan')}}"> <i class="menu-icon ti-wallet"></i>Data Pemasukan </a>
+                        <a href="{{URL('admin/pemasukan')}}"> <i class="menu-icon ti-wallet"></i>Data Pemasukkan </a>
                     </li>
 
                     <li>
                         <a href="{{URL('admin/pengeluaran')}}"> <i class="menu-icon ti-wallet"></i>Data Pengeluaran </a>
                     </li>
+
+                    <li>
+                        <a href="{{URL('admin/landing')}}"> <i class="menu-icon ti-layers"></i>Data Landing Page</a>
+                    </li>
+
+                    <!-- <li>
+                        <a href="{{URL('admin/pertanyaan')}}"> <i class="menu-icon ti-comments"></i>Data Pertanyaan</a>
+                    </li> -->
+
+                    
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -140,11 +152,14 @@
     <!-- Right Panel -->
 
     <!-- Scripts -->
+    <script src="{{asset('js/app.js')}}"></script> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/main.js">
+    </script>
 
 
     <script src="assets/js/lib/data-table/datatables.min.js"></script>
@@ -164,6 +179,35 @@
           $('#bootstrap-data-table-export').DataTable();
       } );
   </script>
+
+<script >
+$('select[name="id_kabupaten"]').on('change', function(){
+    console.log("test");
+    let kab = $("select[name=id_kabupaten]").val();
+    $.ajax({
+            url: "/transportasi=" + kab,
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            type: 'GET',
+            dataType: 'json',
+            success: function(data){
+                        const results = data;
+                        console.log(results);
+                        if(results){
+                            $('select[name="id_transportasi"]').empty();
+                            $('select[name="id_transportasi"]').append(`<option 
+                                value=''> Pilih Lokasi </option>`);
+                                results[0].forEach(result =>{
+                            $('#id_transportasi').append(`<option 
+                                    value='result.id_transportasi'> 
+                                    result.nama_kec
+                                    </option>`)
+                            });
+                        
+                        }
+             }
+    })
+})    
+</script>
 
 
 </body>

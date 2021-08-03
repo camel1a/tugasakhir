@@ -26,7 +26,9 @@ class AdminPegawaiController extends Controller
     public function store(Request $request)
     {
         
-
+        $foto = $request->file('foto');
+        $new_name = rand().'.'.$foto->getClientOriginalExtension();
+        $foto->move(public_path('foto'), $new_name);
         $data = array(
             'username'=>($request->username),
             'password'=>($request->password),
@@ -34,8 +36,10 @@ class AdminPegawaiController extends Controller
             'email'=>$request->email,
             'no_hp'=>$request->no_hp,
             'jobdesk'=>$request->jobdesk,
+            'kontrak'=>$request->kontrak,
             'alamat'=>$request->alamat,
-            'jk'=>$request->jk
+            'jk'=>$request->jk,
+            'foto'=>$new_name
         );
         Pegawai::create($data);
         return redirect('admin\pegawai')->with('success','Data Pegawai berhasil ditambah');
@@ -50,11 +54,31 @@ class AdminPegawaiController extends Controller
     // untuk edit
     public function update(Request $request, $id)
     {
-            if($request->has('id_jk'))
+
+        $foto = $request->file('foto');
+        if($request->hasFile('foto'))
+        {
+            $new_name = rand().'.'.$foto->getClientOriginalExtension();
+            $foto->move(public_path('foto'), $new_name);
+            $data = array(            
+                'foto'=>$new_name
+            );
+        Pegawai::whereid_pegawai($id)->update($data);
+            if($request->has('jk'))
             {
                 $data = array(
-                    'id_jk'=>$request->id_jk,
+                    'jk'=>$request->jk,
                 );
+            Pegawai::whereid_pegawai($id)->update($data);
+            }
+            if($request->has('kontrak'))
+            {
+                $data = array(
+                    'kontrak'=>$request->kontrak,
+                );
+            Pegawai::whereid_pegawai($id)->update($data);
+            }
+            
             Pegawai::whereid_pegawai($id)->update($data);
             }
             $data = array(
@@ -64,8 +88,7 @@ class AdminPegawaiController extends Controller
                 'email'=>$request->email,
                 'no_hp'=>$request->no_hp,
                 'jobdesk'=>$request->jobdesk,
-                'alamat'=>$request->alamat,
-                'jk'=>$request->jk
+                'alamat'=>$request->alamat
             );
         Pegawai::whereid_pegawai($id)->update($data);
         return redirect('admin\pegawai');

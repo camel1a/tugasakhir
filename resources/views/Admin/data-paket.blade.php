@@ -42,10 +42,10 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Jenis Paket</th>
-                                    <th>Deskripsi Paket</th>
+                                    <th>Nama Paket</th>
                                     <th>Harga</th>
-                                    <th>Foto</th>
-                                    <th width = "15%">Aksi</th>
+                                    <th>Deskripsi Foto</th>
+                                    <th width = "14%">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -55,7 +55,10 @@
                                     <td>{{$p->jenis}}</td>
                                     <td>{{$p->deskripsi}}</td>
                                     <td><?PHP echo "Rp. " . number_format($p->harga, 0, ".", "."); ?></td>
-                                    <td><img  align:center; src="{{URL::to('/')}}/foto/{{$p->foto}}" class="fa-image" width="100px" href="URL::to('/')}}/foto/{{$p->foto}}" ></td>
+                                    <td>
+                                    <a href="detail/{{$p->id_paket}} "  style="text-decoration: none; color: #292b35;" data-toggle="modal" data-target="#detail{{$p->id_paket}}" >    
+                                    <img  align:center; src="{{URL::to('/')}}/foto/{{$p->foto}}" class="fa-image" width="100px" href="URL::to('/')}}/foto/{{$p->foto}}" >
+                                    </td>
                                     <td>
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit{{$p->id_paket}}" >Edit</button>
                                     <div style="float:right;">
@@ -113,9 +116,9 @@
                     </div>
                 </div>
                 <div class="row form-group">
-                    <label class="col-sm-4 control-label">Deskripsi Paket</label>
+                    <label class="col-sm-4 control-label">Nama Paket</label>
                     <div class="col-sm-8">
-                    <textarea class="form-control"name="deskripsi" type="text" required></textarea>
+                    <input type="text" name="deskripsi" class="form-control" required>
                     </div>
                 </div>
                 <div class="row form-group">
@@ -125,7 +128,7 @@
                     </div>
                 </div>
                 <div class="row form-group">
-                    <label class="col-sm-4 control-label">Foto</label>
+                    <label class="col-sm-4 control-label">Deskripsi Foto</label>
                     <div class="col-sm-8">        
                         <input type="file" name="foto"  class="form-control" required>
                     </div>
@@ -140,6 +143,34 @@
     </div>
 </div>
 <!-- /akhir tambah -->
+
+@foreach ($paket as $pak)
+<!-- Modal Detail Data  -->
+<div id="detail{{$pak->id_paket}}" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- konten modal-->
+        <div class="modal-content">
+            <!-- heading modal -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="mediumModalLabel">Preview Paket</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- body modal -->
+            <div class="modal-body">
+            <form action="#" class="form-horizontal tasi-form" method="post" enctype="multipart/form-data">                
+                
+                 
+                <img  align:center; src="{{URL::to('/')}}/foto/{{$pak->foto}}" style="margin: center;" width="500px" href="URL::to('/')}}/foto/{{$pak->foto}}" readonly> 
+                    
+            
+            </form>
+            </div>        
+        </div>
+    </div>
+</div>
+@endforeach
 
 @foreach ($paket as $p)
 <!-- Modal Ubah Data  -->
@@ -166,7 +197,7 @@
                     </div>
                 </div>
                 <div class="row form-group">
-                    <label class="col-sm-4 control-label">Deskripsi Paket</label>
+                    <label class="col-sm-4 control-label">Nama Paket</label>
                     <div class="col-sm-8">        
                         <input type="text" name="deskripsi" class="form-control" value ="{{$p->deskripsi}}" >
                     </div>
@@ -178,13 +209,13 @@
                     </div>
                 </div>
                 <div class="row form-group">
-                    <label class="col-sm-4 control-label">foto</label>
+                    <label class="col-sm-4 control-label">Deskripsi Foto</label>
                     <div class="col-sm-8">        
                         <input type="file" name="foto" class="form-control" >
                     </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary">Edit Paket</button>
+                  <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>   
             </form>
             </div>        
